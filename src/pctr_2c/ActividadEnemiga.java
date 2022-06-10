@@ -8,20 +8,22 @@ import java.util.logging.Logger;
 public class ActividadEnemiga implements Runnable{
 	private static final int M = 20; //maximo de enemigos
 	int tipoEnemigo;
+	private IJuego juego;
 	
-	public ActividadEnemiga(int M, int tipoEnemigo) {
-		this.M = M;
+	public ActividadEnemiga(int tipoEnemigo,IJuego juego) {
 		this.tipoEnemigo = tipoEnemigo;
+		this.juego = juego;
+		
 	}
-
+	
 	@Override
 	public void run() {
 		for (int i = 0; i < M; i ++) {
 			try {
-				juego.eliminarEnemigo(tipoEnemigo);
+				juego.generarEnemigo(tipoEnemigo);
 				TimeUnit.MILLISECONDS.sleep(new Random().nextInt(5)*1000);
 			} catch (InterruptedException e) {
-				Logger.getGlobal().log(Level.INFO, "Enemigo NO eliminado");
+				Logger.getGlobal().log(Level.INFO, "Enemigo NO generado");
 				Logger.getGlobal().log(Level.INFO, e.toString());
 				return;
 			}
