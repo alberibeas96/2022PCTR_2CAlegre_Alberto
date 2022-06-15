@@ -21,7 +21,7 @@ public class Juego  implements IJuego{
 	
 
 	@Override
-	public void generarEnemigo(Integer tipoEnemigo) {
+	public synchronized void  generarEnemigo(Integer tipoEnemigo) {
 		// Si no hay enemigos de este tipo se generan.
 		if (contadoresEnemigosTipo.get(tipoEnemigo) == null){
 			contadoresEnemigosTipo.put(tipoEnemigo, 0);
@@ -47,7 +47,7 @@ public class Juego  implements IJuego{
 	}
 
 	@Override
-	public void eliminarEnemigo(Integer tipoEnemigo) {
+	public synchronized void eliminarEnemigo(Integer tipoEnemigo) {
 		// Si no hay enemigos de este tipo se generan.
 		if (contadoresEliminadosTipo.get(tipoEnemigo) == null){
 			contadoresEliminadosTipo.put(tipoEnemigo, 0);
